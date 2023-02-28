@@ -5,15 +5,17 @@ answers.forEach(a => console.log(a))
 
 let container = document.getElementById('response-container') as HTMLElement
 let response = document.createElement('a')
-response.innerText = "Type a number and press Enter to make a guess."
+let defaultMessage = "Type a number and press Enter to make a guess."
+response.innerText = defaultMessage
 container.appendChild(response)
 
 function processGuess() {
-    let guess = (document.getElementById('guess') as HTMLInputElement).value;
-    // console.log('Guess:' + guess);
+    let guess = (document.getElementById('guess') as HTMLInputElement).value
+    guess = guess.toUpperCase()
+    // console.log('Guess:' + guess)
     if (guess) {
-        response.innerText = guess;
+        response.innerText = guess
     } else {
-        response.innerText = "Type a number and press Enter to make a guess.";
+        response.innerText = defaultMessage
     }
 }

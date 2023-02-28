@@ -5,15 +5,17 @@ console.log("Answer numbers:");
 answers.forEach(a => console.log(a));
 let container = document.getElementById('response-container');
 let response = document.createElement('a');
-response.innerText = "Type a number and press Enter to make a guess.";
+let defaultMessage = "Type a number and press Enter to make a guess.";
+response.innerText = defaultMessage;
 container.appendChild(response);
 function processGuess() {
     let guess = document.getElementById('guess').value;
-    // console.log('Guess:' + guess);
+    guess = guess.toUpperCase();
+    // console.log('Guess:' + guess)
     if (guess) {
         response.innerText = guess;
     }
     else {
-        response.innerText = "Type a number and press Enter to make a guess.";
+        response.innerText = defaultMessage;
     }
 }

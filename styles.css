@@ -1,5 +1,16 @@
 * {
     font-family: 'Consolas';
-    background-color: darkslateblue;
-    color: lemonchiffon;
+    background-color: #191919;
+    color: goldenrod;
+}
+
+input {
+    text-transform: uppercase;
+    font-size: large;
+    background-color: #4c4c4c;
+    color: white;
+}
+
+::placeholder {
+    text-transform: none;
 }
