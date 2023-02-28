@@ -6,17 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space Piracy</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
         <h2>Space Piracy</h2>
-        <h4><i>This is as basic as 0=0x0.</i></h4>
+        <h4><i>This puzzle is as basic as 0=0x0.</i></h4>
     </header>
-    <script src="dist/piracy.js"></script>
 
-    <input type="text" id="guess" onchange="processGuess()" placeholder="What number is on your mind?" size="30">
+    <input type="text" id="guess" onchange="processGuess()" placeholder="What number's on your mind?" size="30">
+    <br>
+    <br>
+    <div id="response-container"></div>
 </body>
 
+<script src="dist/piracy.js"></script>
 
 </html>
