@@ -1,6 +1,20 @@
 "use strict";
-let hexes = ['51', '500', 'face'];
-let answers = hexes.map(h => parseInt(h, 16));
+let hexes = [
+    'FD0',
+    'C0F1DE',
+    'ABD1CAE',
+    'DCADE',
+    '51',
+    'C0FFE',
+    'BED1DE',
+    '500',
+    'AFF0D',
+    'D15E5E',
+    'DEBAED',
+    'BA5D'
+];
+let answers = hexes.map(h => parseInt(h, 16)).sort((n1, n2) => n1 - n2);
+console.log(answers);
 let container = document.getElementById('response-container');
 let inputBox = document.getElementById('guess');
 let response = document.createElement('a');
@@ -9,19 +23,19 @@ response.innerText = defaultMessage;
 container.appendChild(response);
 function guessResults(guess) {
     let guessVal = parseInt(guess, 16);
-    let hline = "+" + "-".repeat(4) + "+" + "-".repeat(20) + "+\n";
+    let hline = "+" + "-".repeat(4) + "+" + "-".repeat(14) + "+\n";
     let table = "Results for " + guess + "\n" + hline;
     for (let i = 0; i < answers.length; i++) {
         let answer = answers[i];
         let row = "| " + (i + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false }) + " |";
         if (guessVal < answer) {
-            row += " too small" + "\xa0".repeat(10);
+            row += " too small" + "\xa0".repeat(4);
         }
         else if (guessVal == answer) {
-            row += " just right!" + "\xa0".repeat(8);
+            row += " just right!" + "\xa0".repeat(2);
         }
         else {
-            row += " too big" + "\xa0".repeat(12);
+            row += " too big" + "\xa0".repeat(6);
         }
         row += "|\n";
         table += row + hline;

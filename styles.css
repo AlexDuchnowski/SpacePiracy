@@ -14,3 +14,9 @@ input {
 ::placeholder {
     text-transform: none;
 }
+
+/* #response-container * {} */
+
+#clues * {
+    font-size: larger;
+}

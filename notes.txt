@@ -1,0 +1,15 @@
+A B C D E F I S O
+
+I: FIDO         F1D0        FD0
+N: CONFIDE      C0NF1DE     C0F1DE
+T: ABDICATE     ABD1CATE    ABD1CAE
+E: DECADE       DECADE      DCADE
+R: SIR          51R         51
+E: COFFEE       C0FFEE      C0FFE
+S: BEDSIDE      BEDS1DE     BED1DE
+T: SOOT         500T        500
+
+R: AFFORD       AFF0RD      AFF0D
+A: DISEASE      D15EA5E     D15E5E
+T: DEBATED      DEBATED     DEBAED
+E: BASED        BA5ED       BA5D
