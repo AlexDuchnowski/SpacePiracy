@@ -1,15 +1,15 @@
 A B C D E F I S O
 
-I: FIDO         F1D0        FD0
-N: CONFIDE      C0NF1DE     C0F1DE
-T: ABDICATE     ABD1CATE    ABD1CAE
-E: DECADE       DECADE      DCADE
-R: SIR          51R         51
-E: COFFEE       C0FFEE      C0FFE
-S: BEDSIDE      BEDS1DE     BED1DE
-T: SOOT         500T        500
+I: DEICIDE      DE1C1DE     DEC1DE
+N: FENCES       FENCE5      FECE5
+T: FETE         FETE        FEE
+E: CEASE        CEA5E       CA5E
+R: FARCE        FARCE       FACE
+E: CODE         C0DE        C0D
+S: SOS          505         50
+T: TIS          T15         15
 
-R: AFFORD       AFF0RD      AFF0D
-A: DISEASE      D15EA5E     D15E5E
-T: DEBATED      DEBATED     DEBAED
-E: BASED        BA5ED       BA5D
+R: DREAD        DREAD       DEAD
+A: ASIDE        A51DE       51DE
+T: SAFEST       5AFE5T      5AFE5
+E: BASES        BA5E5       BA55

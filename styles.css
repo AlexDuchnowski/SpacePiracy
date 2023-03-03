@@ -1,7 +1,8 @@
 * {
     font-family: 'Consolas';
     background-color: #191919;
-    color: goldenrod;
+    /* color: goldenrod; */
+    color: cadetblue;
 }
 
 input {
