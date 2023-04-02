@@ -1,7 +1,7 @@
 "use strict";
 let passwords = [
     'A5C1C0DE',
-    '0B51D1AS',
+    '0B51D1A5',
     'D1DAC1C5',
     '60DD55E5',
     'F0CEFEED',
@@ -48,12 +48,12 @@ let transformations = [
     hexFunctionMachine((n) => n / 3),
     hexFunctionMachine((n) => n / 5),
     reverseString,
+    hexFunctionMachine((n) => n * 3),
     reverseString,
     reverseString,
     reverseString,
     reverseString,
-    reverseString,
-    reverseString,
+    hexFunctionMachine((n) => Math.sqrt(n)),
     reverseString,
 ];
 function passwordGuessOverlap(password, guess) {
@@ -96,9 +96,13 @@ function displayResults(guess) {
                 response.innerHTML += " No errors or warnings :)" + "\xa0".repeat(errorColWidth - 25) + "|";
             }
             let [overlap, remainder] = passwordGuessOverlap(passwords[i], transformed);
-            console.log(i, overlap, remainder);
-            response.innerHTML += '<b><u style="color: darkred;">' + overlap + '</u></b>';
-            response.innerHTML += remainder;
+            if (!overlap.includes("•") && remainder === "") {
+                response.innerHTML += '<b><u style="color: green;">' + overlap + '</u></b>';
+            }
+            else {
+                response.innerHTML += '<b><u style="color: darkred;">' + overlap + '</u></b>';
+                response.innerHTML += remainder;
+            }
         }
         catch (error) {
             response.innerHTML += error.message + "|" + "█".repeat(8);
@@ -108,7 +112,7 @@ function displayResults(guess) {
 }
 function processGuess() {
     /**
-     * A function that is called every time a number is guessed.
+     * This function is called every time a number is guessed.
      */
     let guess = inputBox.value;
     guess = guess.toUpperCase();
