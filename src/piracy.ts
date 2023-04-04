@@ -57,6 +57,11 @@ function peelString(s: string): string {
     }
 }
 
+function cutAndSwap(s: string): string {
+    let cutIndex = Math.floor(s.length / 2) + s.length % 2
+    return s.slice(cutIndex) + s.slice(0, cutIndex)
+}
+
 let transformations = [
     hexFunctionMachine((n: number) => n * 2),
     (hex: string) => reverseString(simplifyHexString(hex)),
@@ -66,7 +71,7 @@ let transformations = [
     hexFunctionMachine((n: number) => n * 3),
     hexFunctionMachine((n: number) => n - parseInt("22222222", 16)),
     (hex: string) => peelString(simplifyHexString(hex)),
-    reverseString,
+    (hex: string) => cutAndSwap(simplifyHexString(hex)),
     hexFunctionMachine((n: number) => parseInt("FFFFFFFF", 16) - n),
     hexFunctionMachine((n: number) => Math.sqrt(n)),
     hexFunctionMachine((n: number) => n + parseInt("12345678", 16)),
@@ -104,7 +109,7 @@ function displayResults(guess: string): void {
         response.innerHTML += "| " + (i + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false }) + " |"
         try {
             let transformed = transformations[i](guess)
-            // console.log(i + 1, transformed)
+            console.log(i + 1, transformed)
             if (transformed.length != 8) {
                 let message = " WARNING: Result has length " + transformed.length.toString(16).toUpperCase() + "."
                 response.innerHTML += message + "\xa0".repeat(errorColWidth - message.length) + "|"
