@@ -104,7 +104,7 @@ function displayResults(guess: string): void {
      * updates the element to display and whether there was an exact match.
      */
     let hline = "+" + "-".repeat(4) + "+" + "-".repeat(errorColWidth) + "+" + "-".repeat(8) + "+<br>"
-    response.innerHTML += "Results for " + guess + "<br>" + hline + "|" + "\xa0".repeat(4) + "|" + " Errors/Warnings" + "\xa0".repeat(errorColWidth - 16) + "| Result |<br>" + hline
+    response.innerHTML += "Results for " + simplifyHexString(guess) + "<br>" + hline + "|" + "\xa0".repeat(4) + "|" + " Errors/Warnings" + "\xa0".repeat(errorColWidth - 16) + "| Result |<br>" + hline
     for (let i = 0; i < passwords.length; i++) {
         response.innerHTML += "| " + (i + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false }) + " |"
         try {
