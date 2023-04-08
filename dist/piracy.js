@@ -16,7 +16,7 @@ let inputs = [
 let container = document.getElementById('response-container');
 let inputBox = document.getElementById('guess');
 let errorColWidth = 60;
-let resultColWidth = 20;
+let resultColWidth = 16;
 let response = document.createElement('a');
 let defaultMessage = "Type a number in the field above and press Enter to make a guess.";
 response.innerText = defaultMessage;
@@ -38,7 +38,24 @@ function hexFunctionMachine(f) {
     };
 }
 function simplifyHexString(hex) {
+    /**
+     * Converts the hex to an int and back to remove any leading 0s.
+     */
     return parseInt(hex, 16).toString(16).toUpperCase();
+}
+function lengthSensitive(f, hexit) {
+    /**
+     * Takes an operator f on numbers and a single hexit and returns a function that uses the
+     * hexit to generate a number of the same length as its input and combines them using f.
+     * This is to be used to create functions to provide to hexFunctionMachine.
+     */
+    if (hexit.length != 1) {
+        throw new Error("Hexit length must be exactly 1. " + hexit + " has length " + hexit.length + ".");
+    }
+    return function (n) {
+        let hex = n.toString(16).toUpperCase();
+        return f(parseInt(hex, 16), parseInt(hexit.repeat(hex.length), 16));
+    };
 }
 function reverseString(s) {
     if (s === "") {
@@ -65,17 +82,16 @@ let transformations = [
     (hex) => reverseString(simplifyHexString(hex)),
     hexFunctionMachine((n) => n * 3),
     hexFunctionMachine((n) => n * 5),
-    hexFunctionMachine((n) => n + parseInt("11111111", 16)),
+    hexFunctionMachine(lengthSensitive((a, b) => a + b, "1")),
     hexFunctionMachine((n) => n / 3),
-    hexFunctionMachine((n) => n - parseInt("22222222", 16)),
+    hexFunctionMachine(lengthSensitive((a, b) => a - b, "2")),
     (hex) => peelString(simplifyHexString(hex)),
-    (hex) => cutAndSwap(simplifyHexString(hex)),
-    hexFunctionMachine((n) => parseInt("FFFFFFFF", 16) - n),
+    hexFunctionMachine((n) => n / 5),
+    hexFunctionMachine(lengthSensitive((a, b) => b - a, "F")),
     hexFunctionMachine((n) => n * n),
-    hexFunctionMachine((n) => n + parseInt("12345678", 16)),
+    (hex) => cutAndSwap(simplifyHexString(hex)),
 ];
 let passwords = inputs.map((x, i) => transformations[i](x));
-console.log(passwords);
 function passwordGuessOverlap(password, guess) {
     /**
      * Computes and returns the strings to display correctly
@@ -103,12 +119,12 @@ function displayResults(guess) {
      * updates the element to display and whether there was an exact match.
      */
     let hline = "+" + "-".repeat(4) + "+" + "-".repeat(errorColWidth) + "+" + "-".repeat(resultColWidth) + "+<br>";
-    response.innerHTML += "Results for " + simplifyHexString(guess) + "<br>" + hline + "|" + "\xa0".repeat(4) + "|" + " Errors/Warnings" + "\xa0".repeat(errorColWidth - 16) + "| Result" + "\xa0".repeat(resultColWidth - 7) + "|<br>" + hline;
+    response.innerHTML += "Results for " + simplifyHexString(guess) + "<br>" + hline + "|" + "\xa0".repeat(4) + "|" + " Errors/Warnings" + "\xa0".repeat(errorColWidth - 16) + "| Result Overlap" + "\xa0".repeat(resultColWidth - 15) + "|<br>" + hline;
     for (let i = 0; i < passwords.length; i++) {
         response.innerHTML += "| " + (i + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false }) + " |";
         try {
             let transformed = transformations[i](guess);
-            console.log(i + 1, transformed);
+            // console.log(i + 1, transformed)
             if (transformed.length != passwords[i].length) {
                 let message = " WARNING: Result has length " + transformed.length.toString(16).toUpperCase() + ".";
                 response.innerHTML += message + "\xa0".repeat(errorColWidth - message.length) + "|";
